@@ -136,42 +136,44 @@ const UserPreviewScreen = props => {
         <View style={styles.titleContainer}>
           <TitleSection username={name || username} bio={bio} />
         </View>
-        <Section title='Github Profile'>
-          <Text style={styles.description}>{description}</Text>
-        </Section>
-        <Section title='Website'>
-          <Text style={styles.description}>{website || '  ----  '}</Text>
-        </Section>
-        <Section title='Languages'>
-          {Object.keys(userLanguages).map((key, index) => (
-            <Text key={index} style={styles.description}>{`${index +
-              1} ${key} ${userLanguages[key]}`}</Text>
-          ))}
-        </Section>
-        <Section title='Top 3 Repos'>
-          {userRepos.map((repo, index) => (
-            <View key={index} style={styles.sectionListContainer}>
-              <View style={styles.sectionListTitleContainer}>
-                <Text style={styles.sectionListTitle}>{repo.name}</Text>
+        <View style={styles.sectionContainer}>
+          <Section title='Github Profile'>
+            <Text style={styles.description}>{description}</Text>
+          </Section>
+          <Section title='Website'>
+            <Text style={styles.description}>{website || '  ----  '}</Text>
+          </Section>
+          <Section title='Languages'>
+            {Object.keys(userLanguages).map((key, index) => (
+              <Text key={index} style={styles.description}>{`${index +
+                1} ${key} ${userLanguages[key]}`}</Text>
+            ))}
+          </Section>
+          <Section title='Top 3 Repos'>
+            {userRepos.map((repo, index) => (
+              <View key={index} style={styles.sectionListContainer}>
+                <View style={styles.sectionListTitleContainer}>
+                  <Text style={styles.sectionListTitle}>{repo.name}</Text>
+                </View>
+                <Text style={styles.description}>
+                  {repo.description || '  ----  '}
+                </Text>
               </View>
-              <Text style={styles.description}>
-                {repo.description || '  ----  '}
-              </Text>
-            </View>
-          ))}
-        </Section>
-        <Section title='Organizations'>
-          {userOgranizations.map((org, index) => (
-            <View key={index} style={styles.sectionListContainer}>
-              <View style={styles.sectionListTitleContainer}>
-                <Text style={styles.sectionListTitle}>{org.name}</Text>
+            ))}
+          </Section>
+          <Section title='Organizations'>
+            {userOgranizations.map((org, index) => (
+              <View key={index} style={styles.sectionListContainer}>
+                <View style={styles.sectionListTitleContainer}>
+                  <Text style={styles.sectionListTitle}>{org.name}</Text>
+                </View>
+                <Text style={styles.description}>
+                  {org.description || '  ----  '}
+                </Text>
               </View>
-              <Text style={styles.description}>
-                {org.description || '  ----  '}
-              </Text>
-            </View>
-          ))}
-        </Section>
+            ))}
+          </Section>
+        </View>
       </ScrollView>
     </SafeAreaView>
   )
@@ -201,7 +203,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'open-sans-bold'
   },
+  sectionContainer: {
+    paddingLeft: 30
+  },
   sectionListContainer: {
+    width: '100%',
     marginBottom: 10,
     paddingBottom: 10,
     borderBottomColor: 'grey',
